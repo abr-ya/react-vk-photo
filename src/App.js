@@ -11,10 +11,10 @@ const App = ({user, page, setYear}) => {
       <header className="App-header">
         <h1 className="App-title">Мой топ фото !!</h1>
       </header>
-        <p className="App-intro">Здесь будут мои самые залайканые фото</p>
-        <User name={user.name} />
+      <div className='row'>
         <Page photos={page.photos} year={page.year} setYear={setYear} />
-      <hr/>
+        <User name={user.name} />
+      </div>
     </div>
   )
 }
