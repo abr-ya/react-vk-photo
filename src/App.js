@@ -1,23 +1,20 @@
 import React from 'react';
 import './App.scss';
 
-const App = (props) => {
-  const {
-    add,
-    addNum,
-    counter
-  } = props;
+import {User} from './components/User'
+import {Page} from './components/Page'
+
+const App = ({user, page, setYear}) => {
 
   return (
     <div className="App">
-      <h1>Управляем числом: {counter}</h1>
-
+      <header className="App-header">
+        <h1 className="App-title">Мой топ фото !!</h1>
+      </header>
+        <p className="App-intro">Здесь будут мои самые залайканые фото</p>
+        <User name={user.name} />
+        <Page photos={page.photos} year={page.year} setYear={setYear} />
       <hr/>
-
-      <div className="Actions">
-        <button onClick={add}>Добавить 1</button>
-        <button onClick={() => {addNum(10)}}>Добавить 10</button>
-      </div>
     </div>
   )
 }

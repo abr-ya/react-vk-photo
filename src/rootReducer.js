@@ -1,31 +1,11 @@
-//import { combineReducers } from "redux";
-import {ADD, ADD_NUM} from './actions/actionTypes';
+import {combineReducers} from "redux";
 
-// при объединении
-// import {combineReducers} from 'redux';
-// import counter1 from 'path-to-file';
-// import counter2 from 'path-to-file';
+import {pageReducer} from './reducers/page';
+import {userReducer} from './reducers/user';
 
-// export default combineReducers({
-//     counter1, counter2
-// })
+const rootReducer = combineReducers({
+  page: pageReducer,
+  user: userReducer,
+})
 
-
-const initialState = {
-    counter: 0,
-}
-
-export default function rootReducer(state = initialState, action) {
-    switch(action.type) {
-        case ADD:
-            return {
-                counter: state.counter + 1
-            }
-        case ADD_NUM:
-            return {
-                counter: state.counter + action.payload
-            }
-        default:
-            return state;
-    }
-}
+export default rootReducer;
