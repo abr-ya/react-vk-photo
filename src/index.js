@@ -6,8 +6,10 @@ import {register} from './serviceWorker';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import rootReducer from './rootReducer';
+import {consoleLog} from './enhancers/console'; // <-- подключаем наш enhancer
 
-const middleware = [];
+// формируем свой список миддлеваров)
+const middleware = [consoleLog];
 
 // 1.2 Advanced store setup
 // необходимо установить расширение браузера: https://github.com/zalmoxisus/redux-devtools-extension
