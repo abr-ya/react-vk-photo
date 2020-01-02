@@ -4,7 +4,7 @@ import './App.scss';
 import {User} from './components/User'
 import {Page} from './components/Page'
 
-const App = ({user, page, setYear}) => {
+const App = ({user, page, setYear, initApp}) => {
 
   return (
     <div className="App">
@@ -15,6 +15,8 @@ const App = ({user, page, setYear}) => {
         <Page photos={page.photos} year={page.year} setYear={setYear} />
         <User name={user.name} />
       </div>
+
+      <button className='btn' onClick={initApp}>initApp</button>
     </div>
   )
 }
