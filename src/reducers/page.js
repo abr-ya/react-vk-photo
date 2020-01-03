@@ -1,8 +1,7 @@
 import {SET_YEAR} from '../actions/actionTypes';
 
 const initialState = {
-    year: 2018,
-    photos: [],
+    year: 2019,
 }
   
 export function pageReducer(state = initialState, action) {
