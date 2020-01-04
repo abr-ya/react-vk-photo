@@ -18,7 +18,7 @@ export class User extends React.Component {
     } else {
       return (
         <button className="btn" onClick={vkLoginHandler}>
-          Войти
+          Подключиться к вконтакте
         </button>
       )
     }

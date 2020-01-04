@@ -4,6 +4,7 @@ import axios from 'axios';
 
 export const Page = ({year, photos, setYear}) => {
 	let topString = '';
+	let topPhoto = [];
 	const yearClickHandler = e => {
 		const year = +e.currentTarget.innerText
 		setYear(year)
@@ -47,7 +48,10 @@ export const Page = ({year, photos, setYear}) => {
 
 	let start = 0;
 	let end = 0;
-	if (year === 2017) {
+	if (year === 2016) {
+		start = new Date('01.01.2016').getTime() / 1000;
+		end = new Date('01.01.2017').getTime() / 1000;
+	} else if (year === 2017) {
 		start = new Date('01.01.2017').getTime() / 1000;
 		end = new Date('01.01.2018').getTime() / 1000;		
 	} else if (year === 2018) {
@@ -58,9 +62,9 @@ export const Page = ({year, photos, setYear}) => {
 		end = new Date('01.01.2020').getTime() / 1000;
 	}
 	if (Array.isArray(photos) && photos.length) {
-		console.log(photos);
+		//console.log(photos);
 		var filteredPhoto = photos.filter(item => item.date > start && item.date < end);
-		console.log(filteredPhoto);
+		//console.log(filteredPhoto);
 		var currentPhoto = filteredPhoto.map(item => {
 			return {
 				id: item.id,
@@ -68,10 +72,10 @@ export const Page = ({year, photos, setYear}) => {
 				thumb: item.sizes[3].url,
 			};
 		});
-		console.log(currentPhoto);
+		//console.log(currentPhoto);
 		sortBy(currentPhoto, 'likes', 'desc');
-		topString = qs.stringify(currentPhoto.slice(0,9)); // ещё можно JSON.stringify
-
+		topPhoto = currentPhoto.slice(0,9);
+		topString = qs.stringify(topPhoto); // ещё можно JSON.stringify
 	}
 	 
 	return (
@@ -80,16 +84,29 @@ export const Page = ({year, photos, setYear}) => {
 				<button className='btn' onClick={yearClickHandler}>2019</button>
 				<button className='btn' onClick={yearClickHandler}>2018</button>
 				<button className='btn' onClick={yearClickHandler}>2017</button>
+				<button className='btn' onClick={yearClickHandler}>2016</button>
 			</div>
 
 			{(Array.isArray(filteredPhoto) && filteredPhoto.length)
 				? (<p>У тебя {filteredPhoto.length} фото за {year} год</p>)
-				: (<p>Необходимо авторизоваться и получить данные о фото!</p>)
+				: (<p>Чтобы здесь были картинки необходимо авторизоваться и получить данные о фото!</p>)
 			}
 
 			<div>
-				<button className='btn' onClick={sendClickHandler}>отправить на сервер</button>
-			</div>			
+				<button className='btn' onClick={sendClickHandler} disabled>отправить на сервер</button>
+				<p className='cursive'>Была у меня идея сделать подготовку одной картинки на сервере,
+					но я понял, что совершенно не умею работать с графикой на сервере!..</p>
+			</div>
+
+			{(Array.isArray(topPhoto) && topPhoto.length)
+				? topPhoto.map(item => (
+					<div className='card' key={item.id}>
+						<img src={item.thumb} alt={item.id} />
+						<p className='like'>{item.likes}</p>
+					</div>
+				))
+				: null
+			}			
 
 		</div>
 	)

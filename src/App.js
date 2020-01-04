@@ -34,9 +34,9 @@ const App = ({user, page, photo,
       { extended: 1, count: 200, offset: offset, v: '5.80' },
       r => {
         //console.log(r.response.items);
-        const start = new Date('01.01.2017').getTime() / 1000;
-        console.log('01.01.2017:', start);
-        console.log('полученное:', r.response.items[199].date);
+        const start = new Date('01.01.2016').getTime() / 1000;
+        //console.log('01.01.2017:', start);
+        //console.log('полученное:', r.response.items[199].date);
         // если фотографии остались и дата не вылетела
         if (r.response.count > offset + 200 && start < r.response.items[199].date) {
           addPhoto(r.response.items);
@@ -45,34 +45,26 @@ const App = ({user, page, photo,
           }, 500);
         } else {
           var filteredPhoto = r.response.items.filter(item => item.date > start);
-          console.log(filteredPhoto);
+          //console.log(filteredPhoto);
           addPhoto(filteredPhoto);
         }
       }
     );
   }
 
-  const allPhotosHandler = () => {
-    console.log(photo);
-  }
-
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className="App-title">Разбираемся с фотографиями</h1>
+        <h1 className="App-title">Когда не работают "лучшие моменты"!))</h1>
       </header>
+      <User vkLoginHandler={vkLoginHandler} name={user.name} isFetching={user.isFetching} error={user.error} />
+      <h2>после авторизации нужно нажать на кнопку:</h2>
+      {/* <button className='btn' onClick={initAppSagaAction}>initApp</button> */}
+      {/* <button className='btn' onClick={vkLoginHandler}>VK Login</button> loginSagaAction */}
+      <button className='btn' onClick={() => getPhotos(0)}>загрузить данные о фото!</button>      
       <div className='row'>
         <Page photos={photo.items} year={page.year} setYear={setYear} />
-        <User vkLoginHandler={vkLoginHandler} name={user.name} isFetching={user.isFetching} error={user.error} />
       </div>
-
-      <h2>работа с ВК:</h2>
-      {/* <button className='btn' onClick={initAppSagaAction}>initApp</button> */}
-      <button className='btn' onClick={vkLoginHandler}>VK Login</button> {/* loginSagaAction */}
-      <button className='btn' onClick={() => getPhotos(0)}>getPhotos</button>
-
-      <h2>работа с полученными данными:</h2>
-      <button className='btn' onClick={allPhotosHandler}>allPhotos</button>
     </div>
   )
 }

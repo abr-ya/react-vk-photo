@@ -6,14 +6,15 @@ import {register} from './serviceWorker';
 import {createStore, applyMiddleware, compose} from 'redux';
 import {Provider} from 'react-redux';
 import rootReducer from './rootReducer';
-import {consoleLog} from './enhancers/console'; // <-- подключаем наш enhancer
+//import {consoleLog} from './enhancers/console'; // <-- подключаем наш enhancer
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
 // формируем свой список миддлеваров)
-const middleware = [sagaMiddleware, consoleLog];
+// consoleLog - последний в списке, не для продакшена
+const middleware = [sagaMiddleware];
 
 // 1.2 Advanced store setup
 // необходимо установить расширение браузера: https://github.com/zalmoxisus/redux-devtools-extension
