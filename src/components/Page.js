@@ -1,6 +1,7 @@
 import React from 'react';
 import qs from 'qs';
 import axios from 'axios';
+import Card from './Card';
 
 export const Page = ({year, photos, setYear}) => {
 	let topString = '';
@@ -94,16 +95,17 @@ export const Page = ({year, photos, setYear}) => {
 
 			<div>
 				<button className='btn' onClick={sendClickHandler} disabled>отправить на сервер</button>
-				<p className='cursive'>Была у меня идея сделать подготовку одной картинки на сервере,
+				<p className='cursive light'>Была у меня идея сделать подготовку одной картинки на сервере,
 					но я понял, что совершенно не умею работать с графикой на сервере!..</p>
+				<p className='cursive'>Обновление: мне справедливо указали на то, что вертикальным фотографиям "обрезает головы"!</p>
+				<p className='cursive'>Поэтому теперь по каждой фотографии можно кликнуть. Клик по фото - переключение состояния из
+					"растянуть и обрезать" (выбрал пропорцию 1,33, а верно ли?) на "вписать не обрезая" и обратно -
+					можно настроить каждое фото как больше нравится - не только "вертикальные"!)</p>
 			</div>
 
 			{(Array.isArray(topPhoto) && topPhoto.length)
 				? topPhoto.map(item => (
-					<div className='card' key={item.id}>
-						<img src={item.thumb} alt={item.id} />
-						<p className='like'>{item.likes}</p>
-					</div>
+					<Card item={item} key={item.id} />
 				))
 				: null
 			}			

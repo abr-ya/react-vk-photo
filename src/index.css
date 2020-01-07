@@ -96,10 +96,12 @@ h3 {
 }
 
 .cursive {
-  margin-top: -10px;
   font-style: italic;
-  font-weight: 00;
+}
+
+.light {
   opacity: .5;
+  margin-top: -10px;
 }
 
 .card {
