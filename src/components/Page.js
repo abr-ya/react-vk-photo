@@ -50,17 +50,17 @@ export const Page = ({year, photos, setYear}) => {
 	let start = 0;
 	let end = 0;
 	if (year === 2016) {
-		start = new Date('01.01.2016').getTime() / 1000;
-		end = new Date('01.01.2017').getTime() / 1000;
+		start = new Date('2016-01-01').getTime() / 1000;
+		end = new Date('2017-01-01').getTime() / 1000;
 	} else if (year === 2017) {
-		start = new Date('01.01.2017').getTime() / 1000;
-		end = new Date('01.01.2018').getTime() / 1000;		
+		start = new Date('2017-01-01').getTime() / 1000;
+		end = new Date('2018-01-01').getTime() / 1000;		
 	} else if (year === 2018) {
-		start = new Date('01.01.2018').getTime() / 1000;
-		end = new Date('01.01.2019').getTime() / 1000;
+		start = new Date('2018-01-01').getTime() / 1000;
+		end = new Date('2019-01-01').getTime() / 1000;
 	} else if (year === 2019) {
-		start = new Date('01.01.2019').getTime() / 1000;
-		end = new Date('01.01.2020').getTime() / 1000;
+		start = new Date('2019-01-01').getTime() / 1000;
+		end = new Date('2020-01-01').getTime() / 1000;
 	}
 	if (Array.isArray(photos) && photos.length) {
 		//console.log(photos);

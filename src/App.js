@@ -34,12 +34,13 @@ const App = ({user, page, photo,
       { extended: 1, count: 200, offset: offset, v: '5.80' },
       r => {
         //console.log(r.response.items);
-        const start = new Date('01.01.2016').getTime() / 1000;
-        //console.log('01.01.2017:', start);
+        const start = new Date('2016-01-01').getTime() / 1000;
+        //console.log('01.01.2016:', start);
         //console.log('полученное:', r.response.items[199].date);
         // если фотографии остались и дата не вылетела
         if (r.response.count > offset + 200 && start < r.response.items[199].date) {
           addPhoto(r.response.items);
+          //console.log(r.response.items);
           setTimeout(function() {
             getPhotos(offset + 200);
           }, 500);
