@@ -58,11 +58,17 @@ const App = ({user, page, photo,
       <header className="App-header">
         <h1 className="App-title">Когда не работают "лучшие моменты"!))</h1>
       </header>
-      <User vkLoginHandler={vkLoginHandler} name={user.name} isFetching={user.isFetching} error={user.error} />
-      <h2>после авторизации нужно нажать на кнопку:</h2>
-      {/* <button className='btn' onClick={initAppSagaAction}>initApp</button> */}
-      {/* <button className='btn' onClick={vkLoginHandler}>VK Login</button> loginSagaAction */}
-      <button className='btn' onClick={() => getPhotos(0)}>загрузить данные о фото!</button>      
+      <div className='row'>
+        <User vkLoginHandler={vkLoginHandler} name={user.name} isFetching={user.isFetching} error={user.error} />
+      </div>
+      <div className='row'>
+        <div className='load'>
+          <h2>после авторизации нужно нажать на кнопку:</h2>
+          {/* <button className='btn' onClick={initAppSagaAction}>initApp</button> */}
+          {/* <button className='btn' onClick={vkLoginHandler}>VK Login</button> loginSagaAction */}
+          <button className='btn' onClick={() => getPhotos(0)}>загрузить данные о фото!</button>           
+        </div>
+      </div>      
       <div className='row'>
         <Page photos={photo.items} year={page.year} setYear={setYear} />
       </div>

@@ -61,12 +61,15 @@ h3 {
 .ib {
   display: inline-block;
 }
-.page {
-  width: 100%;
+
+.row {
+  display: flex;
 }
+
+.page,
+.load,
 .user {
   width: 100%;
-  vertical-align: top;
 }
 
 .btn {
@@ -138,4 +141,15 @@ h3 {
   font-size: 18pt;
   color: brown;
   opacity: 0.8;
+}
+
+/* Extrasmall */
+@media only screen and (max-width: 480px) {
+  header,
+  .page,
+  .load,
+  .user {
+    width: 320px;
+    margin: 0 auto;   
+  }
 }
